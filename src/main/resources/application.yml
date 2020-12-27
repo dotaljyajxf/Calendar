@@ -1,0 +1,11 @@
+
+author:
+  name: Hello
+  url: SpringBoot
+spring:
+  profiles:
+    active: dev
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath*:com/**/mapper/*.xml
