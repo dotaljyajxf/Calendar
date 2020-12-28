@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xpwi.springboot.dao.ScheduleUserDao">
+    <resultMap id="BaseResultMap" type="com.xpwi.springboot.mbg.model.Users">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="s_id" jdbcType="INTEGER" property="sId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="begin_unix" jdbcType="INTEGER" property="beginUnix" />
+        <result column="end_unix" jdbcType="INTEGER" property="endUnix" />
+        <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    </resultMap>
+
+    <select id="getScheduleIdsByUidsAndBeginUnix" resultType="BaseResultMap" >
+        select s_id from schedule_user where user_id in  #{uids} and begin_unix between ${beginUnix} and ${endUnix};
+    </select>
+
+    <select id="getScheduleIdsByUidsAndEndUnix" resultMap="BaseResultMap" >
+        select s_id from schedule_user where user_id in  #{uids} and end_unix between ${beginUnix} and ${endUnix};
+    </select>
+</mapper>

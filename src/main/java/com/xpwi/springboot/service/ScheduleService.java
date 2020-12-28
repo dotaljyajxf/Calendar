@@ -10,5 +10,5 @@ public interface ScheduleService {
 
     int createSchedule(ScheduleParam schedule);
 
-    int querySchedule(int beginUnix, int endUnix, List<Integer> uids);
+    int getSchedule(int beginUnix, int endUnix, List<Integer> uids);
 }
