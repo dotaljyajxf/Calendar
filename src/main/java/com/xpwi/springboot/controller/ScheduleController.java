@@ -33,7 +33,7 @@ public class ScheduleController {
         return CommonResult.success(null);
     }
 
-    @ApiOperation("新建日程")
+    @ApiOperation("查询日程")
     @RequestMapping(value = "",method = RequestMethod.GET)
     public CommonResult getSchedule(@RequestParam(value = "begin_unix",required = true) int beginUnix,
                                     @RequestParam(value = "end_unix",required = true) int endUnix,

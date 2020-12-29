@@ -8,10 +8,15 @@ import com.xpwi.springboot.mbg.model.ScheduleExample;
 import com.xpwi.springboot.mbg.model.ScheduleUser;
 import com.xpwi.springboot.mbg.model.ScheduleUserExample;
 import com.xpwi.springboot.service.ScheduleService;
+import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 @Service
@@ -27,6 +32,8 @@ public class ScheduleServiceImpl implements ScheduleService {
         Schedule schedule1 = new Schedule();
         BeanUtils.copyProperties(schedule1, schedule);
 
+        ExecutorService single = Executors.newSingleThreadExecutor();
+        single.shutdown();
         return scheduleMapper.insert(schedule1);
     }
 
@@ -38,12 +45,10 @@ public class ScheduleServiceImpl implements ScheduleService {
         List<ScheduleUser>  retBegin  = scheduleUserMapper.selectByExample(scheduleUserExample);
         scheduleUserExample.createCriteria();
 
+       // UUID.randomUUID()
         ScheduleUserExample.Criteria criteria1 = scheduleUserExample.createCriteria();
         criteria1.andUserIdIn(uids).andEndUnixBetween(beginUnix,endUnix);
         List<ScheduleUser>  retEnd  = scheduleUserMapper.selectByExample(scheduleUserExample);
-
-
-
 
         return 0;
     }

@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="launch_uid" jdbcType="INTEGER" property="launchUid" />
     <result column="type" jdbcType="BIT" property="type" />
+    <result column="repeat_uuid" jdbcType="VARCHAR" property="repeatUuid" />
     <result column="meeting_room" jdbcType="INTEGER" property="meetingRoom" />
     <result column="begin_unix" jdbcType="INTEGER" property="beginUnix" />
     <result column="end_unix" jdbcType="INTEGER" property="endUnix" />
@@ -13,6 +14,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, launch_uid, type, meeting_room, begin_unix, end_unix, notify_unix, is_deleted, 
-    content, created_at, updated_at
+    id, launch_uid, type, repeat_uuid, meeting_room, begin_unix, end_unix, notify_unix, 
+    is_deleted, content, created_at, updated_at, title
   </sql>
   <select id="selectByExample" parameterType="com.xpwi.springboot.mbg.model.ScheduleExample" resultMap="BaseResultMap">
     select
@@ -110,14 +112,16 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into schedule (launch_uid, type, meeting_room, 
-      begin_unix, end_unix, notify_unix, 
-      is_deleted, content, created_at, 
-      updated_at)
-    values (#{launchUid,jdbcType=INTEGER}, #{type,jdbcType=BIT}, #{meetingRoom,jdbcType=INTEGER}, 
-      #{beginUnix,jdbcType=INTEGER}, #{endUnix,jdbcType=INTEGER}, #{notifyUnix,jdbcType=INTEGER}, 
-      #{isDeleted,jdbcType=BIT}, #{content,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{updatedAt,jdbcType=TIMESTAMP})
+    insert into schedule (launch_uid, type, repeat_uuid, 
+      meeting_room, begin_unix, end_unix, 
+      notify_unix, is_deleted, content, 
+      created_at, updated_at, title
+      )
+    values (#{launchUid,jdbcType=INTEGER}, #{type,jdbcType=BIT}, #{repeatUuid,jdbcType=VARCHAR}, 
+      #{meetingRoom,jdbcType=INTEGER}, #{beginUnix,jdbcType=INTEGER}, #{endUnix,jdbcType=INTEGER}, 
+      #{notifyUnix,jdbcType=INTEGER}, #{isDeleted,jdbcType=BIT}, #{content,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xpwi.springboot.mbg.model.Schedule">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -130,6 +134,9 @@
       </if>
       <if test="type != null">
         type,
+      </if>
+      <if test="repeatUuid != null">
+        repeat_uuid,
       </if>
       <if test="meetingRoom != null">
         meeting_room,
@@ -155,6 +162,9 @@
       <if test="updatedAt != null">
         updated_at,
       </if>
+      <if test="title != null">
+        title,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="launchUid != null">
@@ -162,6 +172,9 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=BIT},
+      </if>
+      <if test="repeatUuid != null">
+        #{repeatUuid,jdbcType=VARCHAR},
       </if>
       <if test="meetingRoom != null">
         #{meetingRoom,jdbcType=INTEGER},
@@ -187,6 +200,9 @@
       <if test="updatedAt != null">
         #{updatedAt,jdbcType=TIMESTAMP},
       </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.xpwi.springboot.mbg.model.ScheduleExample" resultType="java.lang.Long">
@@ -206,6 +222,9 @@
       </if>
       <if test="record.type != null">
         type = #{record.type,jdbcType=BIT},
+      </if>
+      <if test="record.repeatUuid != null">
+        repeat_uuid = #{record.repeatUuid,jdbcType=VARCHAR},
       </if>
       <if test="record.meetingRoom != null">
         meeting_room = #{record.meetingRoom,jdbcType=INTEGER},
@@ -231,6 +250,9 @@
       <if test="record.updatedAt != null">
         updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -241,6 +263,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       launch_uid = #{record.launchUid,jdbcType=INTEGER},
       type = #{record.type,jdbcType=BIT},
+      repeat_uuid = #{record.repeatUuid,jdbcType=VARCHAR},
       meeting_room = #{record.meetingRoom,jdbcType=INTEGER},
       begin_unix = #{record.beginUnix,jdbcType=INTEGER},
       end_unix = #{record.endUnix,jdbcType=INTEGER},
@@ -248,7 +271,8 @@
       is_deleted = #{record.isDeleted,jdbcType=BIT},
       content = #{record.content,jdbcType=VARCHAR},
       created_at = #{record.createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      title = #{record.title,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -261,6 +285,9 @@
       </if>
       <if test="type != null">
         type = #{type,jdbcType=BIT},
+      </if>
+      <if test="repeatUuid != null">
+        repeat_uuid = #{repeatUuid,jdbcType=VARCHAR},
       </if>
       <if test="meetingRoom != null">
         meeting_room = #{meetingRoom,jdbcType=INTEGER},
@@ -286,6 +313,9 @@
       <if test="updatedAt != null">
         updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -293,6 +323,7 @@
     update schedule
     set launch_uid = #{launchUid,jdbcType=INTEGER},
       type = #{type,jdbcType=BIT},
+      repeat_uuid = #{repeatUuid,jdbcType=VARCHAR},
       meeting_room = #{meetingRoom,jdbcType=INTEGER},
       begin_unix = #{beginUnix,jdbcType=INTEGER},
       end_unix = #{endUnix,jdbcType=INTEGER},
@@ -300,7 +331,8 @@
       is_deleted = #{isDeleted,jdbcType=BIT},
       content = #{content,jdbcType=VARCHAR},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

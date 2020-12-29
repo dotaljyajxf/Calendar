@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xpwi.springboot.dao.ScheduleDao">
+
+    <insert id="insertSchedules" keyColumn="id" keyProperty="id" parameterType="com.xpwi.springboot.mbg.model.Schedule" useGeneratedKeys="true">
+        insert into schedule (launch_uid,type,repeat_uuid,meeting_room ,begin_unix,end_unix,notify_unix,content) values
+        <foreach collection="list" item="item" separator="," index="index">
+            (#{item.launchUid},
+            #{item.repeatUuid}),
+            #{item.meetingRoom}),
+            #{item.beginUnix}),
+            #{item.endUnix}),
+            #{item.notifyUnix}),
+            #{item.content})
+        </foreach>
+    </insert>
+</mapper>

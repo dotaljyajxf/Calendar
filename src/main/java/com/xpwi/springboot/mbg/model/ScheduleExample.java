@@ -285,6 +285,76 @@ public class ScheduleExample {
             return (Criteria) this;
         }
 
+        public Criteria andRepeatUuidIsNull() {
+            addCriterion("repeat_uuid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidIsNotNull() {
+            addCriterion("repeat_uuid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidEqualTo(String value) {
+            addCriterion("repeat_uuid =", value, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidNotEqualTo(String value) {
+            addCriterion("repeat_uuid <>", value, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidGreaterThan(String value) {
+            addCriterion("repeat_uuid >", value, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidGreaterThanOrEqualTo(String value) {
+            addCriterion("repeat_uuid >=", value, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidLessThan(String value) {
+            addCriterion("repeat_uuid <", value, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidLessThanOrEqualTo(String value) {
+            addCriterion("repeat_uuid <=", value, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidLike(String value) {
+            addCriterion("repeat_uuid like", value, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidNotLike(String value) {
+            addCriterion("repeat_uuid not like", value, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidIn(List<String> values) {
+            addCriterion("repeat_uuid in", values, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidNotIn(List<String> values) {
+            addCriterion("repeat_uuid not in", values, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidBetween(String value1, String value2) {
+            addCriterion("repeat_uuid between", value1, value2, "repeatUuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRepeatUuidNotBetween(String value1, String value2) {
+            addCriterion("repeat_uuid not between", value1, value2, "repeatUuid");
+            return (Criteria) this;
+        }
+
         public Criteria andMeetingRoomIsNull() {
             addCriterion("meeting_room is null");
             return (Criteria) this;
@@ -772,6 +842,76 @@ public class ScheduleExample {
 
         public Criteria andUpdatedAtNotBetween(Date value1, Date value2) {
             addCriterion("updated_at not between", value1, value2, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIsNull() {
+            addCriterion("title is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIsNotNull() {
+            addCriterion("title is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleEqualTo(String value) {
+            addCriterion("title =", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotEqualTo(String value) {
+            addCriterion("title <>", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleGreaterThan(String value) {
+            addCriterion("title >", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("title >=", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleLessThan(String value) {
+            addCriterion("title <", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleLessThanOrEqualTo(String value) {
+            addCriterion("title <=", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleLike(String value) {
+            addCriterion("title like", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotLike(String value) {
+            addCriterion("title not like", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIn(List<String> values) {
+            addCriterion("title in", values, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotIn(List<String> values) {
+            addCriterion("title not in", values, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleBetween(String value1, String value2) {
+            addCriterion("title between", value1, value2, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotBetween(String value1, String value2) {
+            addCriterion("title not between", value1, value2, "title");
             return (Criteria) this;
         }
     }

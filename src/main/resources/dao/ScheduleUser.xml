@@ -19,4 +19,14 @@
     <select id="getScheduleIdsByUidsAndEndUnix" resultMap="BaseResultMap" >
         select s_id from schedule_user where user_id in  #{uids} and end_unix between ${beginUnix} and ${endUnix};
     </select>
+
+    <insert id="insertScheduleUsers" keyColumn="id" keyProperty="id" parameterType="com.xpwi.springboot.mbg.model.ScheduleUser">
+        insert into schedule (s_id,user_id,begin_unix,end_unix) values
+        <foreach collection="list" item="item" separator="," index="index">
+            (#{item.sId},
+            #{item.userId}),
+            #{item.beginUnix}),
+            #{item.endUnix})
+        </foreach>
+    </insert>
 </mapper>

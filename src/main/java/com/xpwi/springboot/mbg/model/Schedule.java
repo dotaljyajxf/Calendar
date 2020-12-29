@@ -12,6 +12,8 @@ public class Schedule implements Serializable {
 
     private Boolean type;
 
+    private String repeatUuid;
+
     @ApiModelProperty(value = "ID")
     private Integer meetingRoom;
 
@@ -29,6 +31,8 @@ public class Schedule implements Serializable {
     private Date createdAt;
 
     private Date updatedAt;
+
+    private String title;
 
     private static final long serialVersionUID = 1L;
 
@@ -54,6 +58,14 @@ public class Schedule implements Serializable {
 
     public void setType(Boolean type) {
         this.type = type;
+    }
+
+    public String getRepeatUuid() {
+        return repeatUuid;
+    }
+
+    public void setRepeatUuid(String repeatUuid) {
+        this.repeatUuid = repeatUuid;
     }
 
     public Integer getMeetingRoom() {
@@ -120,6 +132,14 @@ public class Schedule implements Serializable {
         this.updatedAt = updatedAt;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -129,6 +149,7 @@ public class Schedule implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", launchUid=").append(launchUid);
         sb.append(", type=").append(type);
+        sb.append(", repeatUuid=").append(repeatUuid);
         sb.append(", meetingRoom=").append(meetingRoom);
         sb.append(", beginUnix=").append(beginUnix);
         sb.append(", endUnix=").append(endUnix);
@@ -137,6 +158,7 @@ public class Schedule implements Serializable {
         sb.append(", content=").append(content);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
+        sb.append(", title=").append(title);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
