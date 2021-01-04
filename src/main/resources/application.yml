@@ -12,11 +12,3 @@ mybatis:
   configuration:
     cache-enabled: false
 
-
-rabbitmq:
-  host: http://62.234.136.238 # rabbitmq的连接地址
-  port: 5672 # rabbitmq的连接端口号
-  virtual-host: /schedule # rabbitmq的虚拟host
-  username: game # rabbitmq的用户名
-  password: ljy1314 # rabbitmq的密码
-  publisher-confirms: true #如果对异步消息需要回调必须设置为true

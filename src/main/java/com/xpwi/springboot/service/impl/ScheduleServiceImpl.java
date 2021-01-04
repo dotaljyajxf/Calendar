@@ -9,11 +9,13 @@ import com.xpwi.springboot.mbg.model.Schedule;
 import com.xpwi.springboot.mbg.model.ScheduleExample;
 import com.xpwi.springboot.mbg.model.ScheduleUser;
 import com.xpwi.springboot.mbg.model.ScheduleUserExample;
+import com.xpwi.springboot.service.QueueService;
 import com.xpwi.springboot.service.ScheduleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchDataSource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,6 +35,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     private ScheduleUserDao scheduleUserDao;
     @Resource
     private ScheduleUserMapper scheduleUserMapper;
+    @Resource
+    private QueueService queueService;
 
     /**
      * 1:普通日程  2：会议日程 3：重复每日 4:每周重复 5：每月重复
@@ -83,6 +87,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         logger.info("createSchedule_schedule",listSchedule);
         scheduleDao.insertSchedules(listSchedule);
 
+        queueService.AddMessage(listSchedule);
         List<ScheduleUser> scheduleUsers = new ArrayList<>();
         for ( Schedule sc : listSchedule ) {
             for (Integer uid : schedule.getNotifyUsers()) {
