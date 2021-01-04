@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.xpwi.springboot.mbg.model.Schedule">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="launch_uid" jdbcType="INTEGER" property="launchUid" />
-    <result column="type" jdbcType="BIT" property="type" />
+    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="repeat_uuid" jdbcType="VARCHAR" property="repeatUuid" />
     <result column="meeting_room" jdbcType="INTEGER" property="meetingRoom" />
     <result column="begin_unix" jdbcType="INTEGER" property="beginUnix" />
@@ -117,7 +117,7 @@
       notify_unix, is_deleted, content, 
       created_at, updated_at, title
       )
-    values (#{launchUid,jdbcType=INTEGER}, #{type,jdbcType=BIT}, #{repeatUuid,jdbcType=VARCHAR}, 
+    values (#{launchUid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{repeatUuid,jdbcType=VARCHAR}, 
       #{meetingRoom,jdbcType=INTEGER}, #{beginUnix,jdbcType=INTEGER}, #{endUnix,jdbcType=INTEGER}, 
       #{notifyUnix,jdbcType=INTEGER}, #{isDeleted,jdbcType=BIT}, #{content,jdbcType=VARCHAR}, 
       #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}
@@ -171,7 +171,7 @@
         #{launchUid,jdbcType=INTEGER},
       </if>
       <if test="type != null">
-        #{type,jdbcType=BIT},
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="repeatUuid != null">
         #{repeatUuid,jdbcType=VARCHAR},
@@ -221,7 +221,7 @@
         launch_uid = #{record.launchUid,jdbcType=INTEGER},
       </if>
       <if test="record.type != null">
-        type = #{record.type,jdbcType=BIT},
+        type = #{record.type,jdbcType=INTEGER},
       </if>
       <if test="record.repeatUuid != null">
         repeat_uuid = #{record.repeatUuid,jdbcType=VARCHAR},
@@ -262,7 +262,7 @@
     update schedule
     set id = #{record.id,jdbcType=INTEGER},
       launch_uid = #{record.launchUid,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=BIT},
+      type = #{record.type,jdbcType=INTEGER},
       repeat_uuid = #{record.repeatUuid,jdbcType=VARCHAR},
       meeting_room = #{record.meetingRoom,jdbcType=INTEGER},
       begin_unix = #{record.beginUnix,jdbcType=INTEGER},
@@ -284,7 +284,7 @@
         launch_uid = #{launchUid,jdbcType=INTEGER},
       </if>
       <if test="type != null">
-        type = #{type,jdbcType=BIT},
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="repeatUuid != null">
         repeat_uuid = #{repeatUuid,jdbcType=VARCHAR},
@@ -322,7 +322,7 @@
   <update id="updateByPrimaryKey" parameterType="com.xpwi.springboot.mbg.model.Schedule">
     update schedule
     set launch_uid = #{launchUid,jdbcType=INTEGER},
-      type = #{type,jdbcType=BIT},
+      type = #{type,jdbcType=INTEGER},
       repeat_uuid = #{repeatUuid,jdbcType=VARCHAR},
       meeting_room = #{meetingRoom,jdbcType=INTEGER},
       begin_unix = #{beginUnix,jdbcType=INTEGER},

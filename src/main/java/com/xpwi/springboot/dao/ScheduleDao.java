@@ -12,5 +12,5 @@ public interface ScheduleDao {
      * @param ScheduleList
      * @return
      */
-    List<Long> insertSchedules(@Param("list")List<Schedule> ScheduleList);
+    int insertSchedules(@Param("list")List<Schedule> ScheduleList);
 }

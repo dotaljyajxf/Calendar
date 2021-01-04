@@ -10,8 +10,9 @@ public class Schedule implements Serializable {
     @ApiModelProperty(value = "ID")
     private Integer launchUid;
 
-    private Boolean type;
+    private Integer type;
 
+    @ApiModelProperty(value = "id")
     private String repeatUuid;
 
     @ApiModelProperty(value = "ID")
@@ -52,11 +53,11 @@ public class Schedule implements Serializable {
         this.launchUid = launchUid;
     }
 
-    public Boolean getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Boolean type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

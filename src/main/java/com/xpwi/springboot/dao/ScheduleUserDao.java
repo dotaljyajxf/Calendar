@@ -1,6 +1,5 @@
 package com.xpwi.springboot.dao;
 
-import com.xpwi.springboot.mbg.model.Schedule;
 import com.xpwi.springboot.mbg.model.ScheduleUser;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,5 +20,5 @@ public interface ScheduleUserDao {
     /**
      * 批量插入日程用户信息
      */
-    List<Long> insertScheduleUsers(@Param("list")List<ScheduleUser> ScheduleUsersList);
+    int insertScheduleUsers(@Param("list")List<ScheduleUser> ScheduleUsersList);
 }

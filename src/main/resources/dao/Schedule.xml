@@ -2,15 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xpwi.springboot.dao.ScheduleDao">
 
+    <!--一种动态的insert语句-->
+    <sql id="scheduleColumns">
+        <trim suffixOverrides=",">
+            <if test="launchUid != null">launch_uid,</if>
+            <if test="type != null">type,</if>
+            <if test="repeatUuid != null">repeat_uuid,</if>
+            <if test="meetingRoom != null">meeting_room,</if>
+            <if test="beginUnix != null">begin_unix,</if>
+            <if test="endUnix != null">end_unix,</if>
+            <if test="notifyUnix != null">notify_unix,</if>
+            <if test="content != null">content</if>
+        </trim>
+    </sql>
+
+    <sql id="scheduleValues">
+        <trim suffixOverrides=",">
+            <if test="item.launchUid != null">#{item.launchUid},</if>
+            <if test="item.type != null">#{item.type},</if>
+            <if test="item.repeatUuid != null">#{item.repeatUuid},</if>
+            <if test="item.meetingRoom != null">#{item.meetingRoom},</if>
+            <if test="item.beginUnix != null">#{item.beginUnix},</if>
+            <if test="item.endUnix != null">#{item.endUnix},</if>
+            <if test="item.notifyUnix != null">#{item.notifyUnix},</if>
+            <if test="item.content != null">#{item.content}</if>
+        </trim>
+    </sql>
+
+
     <insert id="insertSchedules" keyColumn="id" keyProperty="id" parameterType="com.xpwi.springboot.mbg.model.Schedule" useGeneratedKeys="true">
         insert into schedule (launch_uid,type,repeat_uuid,meeting_room ,begin_unix,end_unix,notify_unix,content) values
         <foreach collection="list" item="item" separator="," index="index">
             (#{item.launchUid},
-            #{item.repeatUuid}),
-            #{item.meetingRoom}),
-            #{item.beginUnix}),
-            #{item.endUnix}),
-            #{item.notifyUnix}),
+            #{item.type},
+            #{item.repeatUuid},
+            #{item.meetingRoom},
+            #{item.beginUnix},
+            #{item.endUnix},
+            #{item.notifyUnix},
             #{item.content})
         </foreach>
     </insert>
